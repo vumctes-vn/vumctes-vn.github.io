@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vu Hoang Nguyen — Embedded &amp; Imaging Systems Engineer</title>
+<meta name="description" content="Embedded engineer working on thermal imaging systems: sensor characterisation, calibration, firmware and real-time software. Based in Oslo.">
+<meta name="author" content="Vu Hoang Nguyen">
+<meta property="og:title" content="Vu Hoang Nguyen — Embedded &amp; Imaging Systems Engineer">
+<meta property="og:description" content="Thermal imaging systems: sensor characterisation, calibration, firmware, real-time software. Oslo, Norway.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#F1F3F6;
+    --panel:#FFFFFF;
+    --ink:#14181D;
+    --ink-muted:#5A6672;
+    --rule:#D3DAE1;
+    --rule-soft:#E3E8ED;
+    --hot:#D2560C;
+    --cold:#2A1D63;
+    --measure:68ch;
+  }
+
+  *{box-sizing:border-box}
+
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit}
+
+  .wrap{
+    max-width:1060px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:24px;
+    padding:26px 0 0;
+    flex-wrap:wrap;
+  }
+
+  .mark{
+    font-weight:600;
+    letter-spacing:-0.01em;
+    text-decoration:none;
+  }
+
+  .masthead nav{
+    display:flex;
+    gap:22px;
+    font-size:15px;
+  }
+
+  .masthead nav a{
+    color:var(--ink-muted);
+    text-decoration:none;
+    padding-bottom:2px;
+    border-bottom:1px solid transparent;
+  }
+
+  .masthead nav a:hover,
+  .masthead nav a:focus-visible{
+    color:var(--ink);
+    border-bottom-color:var(--hot);
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero{
+    padding:56px 0 8px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 232px;
+    gap:48px;
+    align-items:start;
+  }
+
+  .portrait{margin:6px 0 0}
+
+  .portrait img{
+    width:100%;
+    height:auto;
+    display:block;
+    border:1px solid var(--rule);
+    aspect-ratio:4/5;
+    object-fit:cover;
+  }
+
+  /* delete this rule once a real photo is in place */
+  .portrait .placeholder{
+    aspect-ratio:4/5;
+    background:var(--panel);
+    border:1px solid var(--rule);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:16px;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12.5px;
+    color:var(--ink-muted);
+    line-height:1.5;
+  }
+
+  /* ---------- personal photo strip ---------- */
+
+  .aside-photos{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:4px;
+  }
+
+  .aside-photos figure{margin:0}
+
+  .aside-photos img{
+    width:100%;
+    height:auto;
+    display:block;
+    border:1px solid var(--rule);
+    aspect-ratio:3/2;
+    object-fit:cover;
+  }
+
+  .aside-photos figcaption{
+    margin-top:8px;
+    font-size:14px;
+    color:var(--ink-muted);
+  }
+
+  .hero h1{
+    font-size:clamp(34px,5.4vw,54px);
+    line-height:1.06;
+    letter-spacing:-0.025em;
+    font-weight:600;
+    margin:0 0 14px;
+  }
+
+  .role{
+    font-size:clamp(17px,2.1vw,20px);
+    color:var(--ink-muted);
+    margin:0 0 26px;
+    max-width:var(--measure);
+  }
+
+  .hero p.lede{
+    max-width:var(--measure);
+    margin:0 0 28px;
+  }
+
+  .links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:0;
+    margin:0;
+    list-style:none;
+  }
+
+  .links a{
+    display:inline-block;
+    font-size:15px;
+    text-decoration:none;
+    padding:7px 14px;
+    border:1px solid var(--rule);
+    background:var(--panel);
+    color:var(--ink);
+  }
+
+  .links a:hover,
+  .links a:focus-visible{
+    border-color:var(--hot);
+    color:var(--hot);
+  }
+
+  /* ---------- the plot ---------- */
+
+  .plot{
+    margin:52px 0 0;
+    background:var(--panel);
+    border:1px solid var(--rule);
+    padding:22px 22px 16px;
+  }
+
+  .plot svg{display:block;width:100%;height:auto}
+
+  .plot figcaption{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid var(--rule-soft);
+    font-size:14.5px;
+    color:var(--ink-muted);
+    max-width:var(--measure);
+  }
+
+  /* ---------- generic section ---------- */
+
+  section{padding:76px 0 0}
+
+  h2{
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    margin:0 0 26px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--rule);
+  }
+
+  /* ---------- timeline ---------- */
+
+  .track{margin:0;padding:0}
+
+  .track div{
+    display:grid;
+    grid-template-columns:92px 1fr;
+    gap:20px;
+    padding:13px 0;
+    border-bottom:1px solid var(--rule-soft);
+  }
+
+  .track dt{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:14px;
+    color:var(--ink-muted);
+    padding-top:2px;
+  }
+
+  .track dd{margin:0;max-width:var(--measure)}
+
+  .track strong{font-weight:600}
+
+  /* ---------- projects ---------- */
+
+  .work{
+    border-top:1px solid var(--rule-soft);
+    padding:26px 0;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 300px;
+    gap:34px;
+    align-items:start;
+  }
+
+  .work:first-of-type{border-top:none;padding-top:6px}
+
+  .work h3{
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:-0.012em;
+    margin:0 0 4px;
+  }
+
+  .work .where{
+    font-size:14px;
+    color:var(--ink-muted);
+    margin:0 0 12px;
+  }
+
+  .work p{margin:0 0 14px;max-width:var(--measure)}
+
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+    list-style:none;
+    padding:0;
+    margin:0 0 14px;
+  }
+
+  .tags li{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12.5px;
+    color:var(--ink-muted);
+    border:1px solid var(--rule);
+    padding:2px 8px;
+  }
+
+  .out{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    font-size:15px;
+  }
+
+  .out a{color:var(--hot);text-decoration:none;border-bottom:1px solid rgba(210,86,12,.35)}
+  .out a:hover,.out a:focus-visible{border-bottom-color:var(--hot)}
+
+  .out .closed{color:var(--ink-muted)}
+
+  /* replace each .shot div with: <img src="images/xxx.jpg" alt="..."> */
+  .shot{
+    background:var(--panel);
+    border:1px solid var(--rule);
+    aspect-ratio:4/3;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:16px;
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12.5px;
+    color:var(--ink-muted);
+    line-height:1.5;
+  }
+
+  .work img{
+    width:100%;
+    height:auto;
+    display:block;
+    border:1px solid var(--rule);
+  }
+
+  /* ---------- publications ---------- */
+
+  .papers{
+    margin:0;
+    padding:0;
+    list-style:none;
+    counter-reset:paper;
+  }
+
+  .papers li{
+    counter-increment:paper;
+    display:grid;
+    grid-template-columns:34px 1fr;
+    gap:16px;
+    padding:16px 0;
+    border-bottom:1px solid var(--rule-soft);
+    max-width:calc(var(--measure) + 8ch);
+  }
+
+  .papers li::before{
+    content:counter(paper);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:14px;
+    color:var(--ink-muted);
+    padding-top:3px;
+  }
+
+  .papers a{color:var(--hot);text-decoration:none;border-bottom:1px solid rgba(210,86,12,.35)}
+  .papers .venue{display:block;font-size:14.5px;color:var(--ink-muted);margin-top:3px}
+
+  /* ---------- skills ---------- */
+
+  .kit div{
+    display:grid;
+    grid-template-columns:190px 1fr;
+    gap:20px;
+    padding:12px 0;
+    border-bottom:1px solid var(--rule-soft);
+  }
+
+  .kit dt{font-weight:500}
+  .kit dd{margin:0;color:var(--ink-muted)}
+
+  /* ---------- footer ---------- */
+
+  footer{
+    margin-top:80px;
+    padding:26px 0 60px;
+    border-top:1px solid var(--rule);
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px 26px;
+    justify-content:space-between;
+    font-size:15px;
+    color:var(--ink-muted);
+  }
+
+  footer a{color:var(--ink-muted);text-decoration:none;border-bottom:1px solid var(--rule)}
+  footer a:hover,footer a:focus-visible{color:var(--hot);border-bottom-color:var(--hot)}
+
+  :focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+
+  @media (max-width:820px){
+    .work{grid-template-columns:1fr;gap:20px}
+    .work .shot,.work img{max-width:360px}
+    .hero{grid-template-columns:1fr;gap:32px}
+    .portrait{max-width:200px;order:-1}
+  }
+
+  @media (max-width:560px){
+    .aside-photos{grid-template-columns:1fr 1fr;gap:14px}
+    .aside-photos figure:last-child{display:none}
+  }
+
+  @media (max-width:560px){
+    body{font-size:16px}
+    .wrap{padding:0 20px}
+    .track div{grid-template-columns:1fr;gap:4px}
+    .kit div{grid-template-columns:1fr;gap:2px}
+    section{padding-top:58px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <a class="mark" href="#top">Vu Hoang Nguyen</a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#papers">Papers</a>
+      <a href="#school">Education</a>
+      <a href="#kit">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <div class="hero">
+      <div>
+        <h1>Vu Hoang Nguyen</h1>
+        <p class="role">Embedded &amp; imaging systems engineer — Oslo, Norway</p>
+        <p class="lede">
+          I work on thermal imaging systems from the detector outwards: characterising how an
+          uncooled microbolometer behaves, correcting for it in firmware, and building the
+          real-time software that turns raw sensor output into a usable image. Before that,
+          four years in a research lab on hands-on projects in embedded systems, IoT and
+          PCB design.
+        </p>
+        <ul class="links">
+          <li><a href="https://github.com/nhvnhvvu">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/Nhvuz">LinkedIn</a></li>
+          <li><a href="mailto:vu.mctes@gmail.com">vu.mctes@gmail.com</a></li>
+          <!-- Drop your PDF in the repo root, then this link works -->
+          <li><a href="CV_VuHoangNguyen.pdf">CV (PDF)</a></li>
+        </ul>
+      </div>
+      <div class="portrait">
+        <!-- Replace this whole div with:
+             <img src="images/portrait.jpg" alt="Vu Hoang Nguyen"> -->
+        <div class="placeholder">images/portrait.jpg<br>4:5 portrait</div>
+      </div>
+    </div>
+
+    <figure class="plot">
+      <svg viewBox="0 0 760 320" role="img" aria-labelledby="plotTitle plotDesc">
+        <title id="plotTitle">Per-row self-heating drift in an uncooled microbolometer</title>
+        <desc id="plotDesc">A fan of exponential curves rising from a common origin at different
+        rates. Rows at the bottom of the detector array drift fastest toward saturation, rows
+        near the vertical centre stay close to the reference level.</desc>
+
+        <defs>
+          <clipPath id="field"><rect x="64" y="24" width="632" height="244"/></clipPath>
+        </defs>
+
+        <!-- grid -->
+        <g stroke="#E3E8ED" stroke-width="1">
+          <line x1="64" y1="72"  x2="696" y2="72"/>
+          <line x1="64" y1="120" x2="696" y2="120"/>
+          <line x1="64" y1="168" x2="696" y2="168"/>
+          <line x1="64" y1="216" x2="696" y2="216"/>
+          <line x1="222" y1="24" x2="222" y2="268"/>
+          <line x1="380" y1="24" x2="380" y2="268"/>
+          <line x1="538" y1="24" x2="538" y2="268"/>
+        </g>
+
+        <!-- axes -->
+        <g stroke="#B9C3CC" stroke-width="1.25">
+          <line x1="64" y1="24" x2="64" y2="268"/>
+          <line x1="64" y1="268" x2="696" y2="268"/>
+        </g>
+
+        <!-- saturation ceiling -->
+        <line x1="64" y1="42" x2="696" y2="42" stroke="#C6503A" stroke-width="1"
+              stroke-dasharray="2 5" opacity=".65"/>
+        <text x="690" y="36" text-anchor="end" font-family="IBM Plex Mono, monospace"
+              font-size="11.5" fill="#C6503A" opacity=".9">saturation</text>
+
+        <!-- reference band -->
+        <line x1="64" y1="262" x2="696" y2="262" stroke="#7C8894" stroke-width="1"
+              stroke-dasharray="4 4"/>
+        <text x="70" y="256" font-family="IBM Plex Mono, monospace" font-size="11.5" fill="#7C8894">
+          reference band · rows 235–245
+        </text>
+
+        <!-- per-row drift curves, hot rows first -->
+        <g clip-path="url(#field)" fill="none" stroke-width="2.1" stroke-linecap="round">
+          <path d="M64 262 C254 163, 494 91,  696 72"  stroke="#F0A81C"/>
+          <path d="M64 262 C254 182, 494 123, 696 108" stroke="#E8801B"/>
+          <path d="M64 262 C254 202, 494 158, 696 146" stroke="#DC5322"/>
+          <path d="M64 262 C254 221, 494 192, 696 184" stroke="#B93068"/>
+          <path d="M64 262 C254 238, 494 221, 696 216" stroke="#8A2690"/>
+          <path d="M64 262 C254 251, 494 242, 696 240" stroke="#52237F"/>
+          <path d="M64 262 C254 259, 494 257, 696 256" stroke="#2A1D63"/>
+        </g>
+
+        <!-- row labels -->
+        <g font-family="IBM Plex Mono, monospace" font-size="11.5" fill="#5A6672">
+          <text x="704" y="76">row 470</text>
+          <text x="704" y="112">row 400</text>
+          <text x="704" y="150">row 330</text>
+          <text x="704" y="188">row 120</text>
+          <text x="704" y="220">row 60</text>
+          <text x="704" y="244">row 20</text>
+        </g>
+
+        <!-- axis labels -->
+        <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#5A6672">
+          <text x="64" y="288">0</text>
+          <text x="212" y="288">10</text>
+          <text x="370" y="288">20</text>
+          <text x="528" y="288">30 min</text>
+          <text x="64" y="16">row mean, 16-bit</text>
+        </g>
+      </svg>
+      <figcaption>
+        Self-heating drift measured on a Lynred ATTO640D-02 detector during warm-up. Rows at the
+        bottom of the array drift fastest and saturate soonest; rows near the vertical centre stay
+        stable. Modelling each row as an exponential transient in elapsed time is what makes the
+        drift correctable without a temperature sensor on the focal plane.
+      </figcaption>
+    </figure>
+
+    <section id="track">
+      <h2>Recently</h2>
+      <dl class="track">
+        <div>
+          <dt>2026.08</dt>
+          <dd>Defended my MSc thesis at the <strong>University of South-Eastern Norway</strong>.</dd>
+        </div>
+        <div>
+          <dt>2026.06</dt>
+          <dd>Submitted the thesis, written at <strong>Integrated Detector Electronics
+          (IDEAS)</strong> in Oslo — <em>Embedded Calibration Storage and Drift Correction for an
+          Uncooled Microbolometer Thermal Imaging System</em>.</dd>
+        </div>
+        <div>
+          <dt>2026.01</dt>
+          <dd>Returned to IDEAS for the thesis project: sensor characterisation, drift modelling,
+          and firmware on a Zynq-7000 module.</dd>
+        </div>
+        <div>
+          <dt>2025.09</dt>
+          <dd>Third semester at <strong>Budapest University of Technology and Economics</strong> —
+          IC and MEMS design, VHDL and simulation, system-level modelling.</dd>
+        </div>
+        <div>
+          <dt>2025.06</dt>
+          <dd>Summer internship at IDEAS — built the real-time Qt/C++ application and GPU
+          processing pipeline for a 640×480 LWIR thermal camera.</dd>
+        </div>
+        <div>
+          <dt>2025.05</dt>
+          <dd>Published <a href="#papers">High Accurate Smart Device for Real-Time Monitoring
+          Electric Motor Conditions Based on IoT Technology and Artificial Intelligence</a> in
+          JST: Smart Systems and Devices.</dd>
+        </div>
+        <div>
+          <dt>2025.01</dt>
+          <dd>Second semester at the <strong>University of South-Eastern Norway</strong>, Borre.</dd>
+        </div>
+        <div>
+          <dt>2024.09</dt>
+          <dd>Started the <strong>Erasmus Mundus</strong> master's in Smart Systems Integrated
+          Solutions on a full scholarship — first semester at <strong>Aalto University</strong>,
+          Helsinki.</dd>
+        </div>
+        <div>
+          <dt>2024.08</dt>
+          <dd>Published <a href="#papers">Development of IoT-Based Device for Nonintrusive
+          Measurement of Rotational Speed of Induction Motors</a> with Springer.</dd>
+        </div>
+        <div>
+          <dt>2024.02</dt>
+          <dd>Embedded engineering trainee (AUTOSAR) at <strong>FPT</strong>, Hanoi.</dd>
+        </div>
+        <div>
+          <dt>2023.10</dt>
+          <dd>BSc in Mechatronics, honours programme, <strong>Hanoi University of Science and
+          Technology</strong>. Thesis graded 9.5/10.</dd>
+        </div>
+        <div>
+          <dt>2023.08</dt>
+          <dd>Published <a href="#papers">Development of Smart Disinfection Machine Using IoT
+          Technology</a> in MM Science Journal.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="work">
+      <h2>Selected work</h2>
+
+      <article class="work">
+        <div>
+          <h3>Drift correction for an uncooled microbolometer</h3>
+          <p class="where">Master's thesis · IDEAS, Oslo · 2026</p>
+          <p>
+            An uncooled microbolometer drifts because its own readout circuit heats it, and this
+            camera had no temperature sensor on the focal plane — so the drift could not be
+            modelled against temperature the way the literature does. I characterised it against
+            warm-up time instead, derived a per-row exponential model from a cold-start recording,
+            and developed two ways to locate a new recording on that drift curve without a
+            temperature reading, then showed algebraically that the two are equivalent. An adequate
+            model turned out to be obtainable from the camera alone with a capped lens — no
+            blackbody, no thermal chamber.
+          </p>
+          <ul class="tags">
+            <li>Python / Jupyter</li>
+            <li>non-linear least squares</li>
+            <li>sensor characterisation</li>
+            <li>Lynred ATTO640D-02</li>
+          </ul>
+          <p class="out">
+            <!-- If USN publishes the thesis openly, link it here. Do NOT self-host if embargoed. -->
+            <span class="closed">Thesis — link pending open publication</span>
+          </p>
+        </div>
+        <div class="shot">images/drift-fit.png<br>drift curves before / after correction</div>
+      </article>
+
+      <article class="work">
+        <div>
+          <h3>On-camera calibration storage</h3>
+          <p class="where">Master's thesis · IDEAS, Oslo · 2026</p>
+          <p>
+            A second calibration route on the same platform: move the correction off the host and
+            into the camera. I enabled the SD1 controller for the on-module eMMC — reconstructing
+            the Vivado project from a TCL script since the original was gone — extended the BSP with
+            xilffs for a FAT filesystem, wrote an FTP service to move calibration files onto the
+            device, and built a temperature-indexed lookup table that selects and applies a
+            per-pixel calibration inside the camera. Double-buffered so a new file loads while the
+            frame pipeline keeps reading, with an identity-calibration fallback so the image never
+            drops out.
+          </p>
+          <ul class="tags">
+            <li>Embedded C</li>
+            <li>Zynq-7000 / TE0720</li>
+            <li>Vivado &amp; Vitis</li>
+            <li>FatFS</li>
+            <li>FTP</li>
+          </ul>
+          <p class="out"><span class="closed">Company platform — code not public</span></p>
+        </div>
+        <div class="shot">images/tcn3-camera.jpg<br>the TCN3 camera on the bench</div>
+      </article>
+
+      <article class="work">
+        <div>
+          <h3>Real-time LWIR thermal camera application</h3>
+          <p class="where">IDEAS, Oslo · 2025–2026</p>
+          <p>
+            Rebuilt a basic frame viewer into a tool that can record, replay, measure and calibrate
+            in one interface. 16-bit video arrives over RTP/UDP through a patched FFmpeg backend;
+            non-uniformity correction and Ironbow colorization run as GLSL shaders inside Qt's scene
+            graph. Getting the per-frame processing fast enough took a detour — a Boost-based
+            histogram made it worse, at 6 FPS — before SSE4.1 vectorisation, a structure-of-arrays
+            layout for the calibration data, and removing allocation from the hot loop brought it
+            from roughly 12 to a stable 45 FPS.
+          </p>
+          <ul class="tags">
+            <li>C++ / Qt</li>
+            <li>GLSL</li>
+            <li>SSE4.1 SIMD</li>
+            <li>FFmpeg</li>
+            <li>multithreading</li>
+          </ul>
+          <p class="out"><span class="closed">Company software — code not public</span></p>
+        </div>
+        <div class="shot">images/viewer-ui.png<br>application screenshot</div>
+      </article>
+
+      <article class="work">
+        <div>
+          <h3>IoT motor monitoring device</h3>
+          <p class="where">3CsLab, HUST · 2023</p>
+          <p>
+            A device that clamps onto a motor housing, watches its parameters, and flags abnormal
+            behaviour through a classification model, alerting a phone app. I led a team of five and
+            did the schematic and PCB layout in Altium, then took the board through four revisions —
+            hand-soldered and bench-tested each one — with a 3D-printed enclosure designed in
+            SolidWorks. Detection accuracy came out above 95%.
+          </p>
+          <ul class="tags">
+            <li>Altium Designer</li>
+            <li>PCB bring-up</li>
+            <li>ESP32</li>
+            <li>SolidWorks</li>
+            <li>machine learning</li>
+          </ul>
+          <p class="out">
+            <a href="https://github.com/nhvnhvvu">Repository</a>
+            <a href="https://doi.org/10.51316/jst.182.ssad.2025.35.2.4">Paper</a>
+          </p>
+        </div>
+        <div class="shot">images/motor-board.jpg<br>assembled board — photograph it</div>
+      </article>
+
+      <article class="work">
+        <div>
+          <h3>Smart gate system</h3>
+          <p class="where">3CsLab, HUST · 2022</p>
+          <p>
+            An IoT gate that opens on face detection or an RFID card, with an admin web page that
+            manages and visualises every tag. I led a team of three, built the local web server and
+            database, and designed a separate ESP32-based reader for enrolling new cards.
+          </p>
+          <ul class="tags">
+            <li>ESP32</li>
+            <li>C</li>
+            <li>PHP / MySQL</li>
+            <li>RFID</li>
+          </ul>
+          <p class="out"><a href="https://github.com/nhvnhvvu">Repository</a></p>
+        </div>
+        <div class="shot">images/gate-system.jpg<br>the built gate system</div>
+      </article>
+
+      <!--
+      ============================================================
+      ADD THE LOW-POWER PROJECT HERE ONCE IT EXISTS.
+      Do not publish this block empty — an entry with no link
+      is worse than no entry. Suggested shape:
+
+      <article class="work">
+        <div>
+          <h3>Low-power sensor node energy budget</h3>
+          <p class="where">Personal project · 2026</p>
+          <p>What you built, what you measured, what the numbers were.</p>
+          <ul class="tags"><li>STM32</li><li>low-power modes</li><li>energy budget</li></ul>
+          <p class="out"><a href="...">Repository</a></p>
+        </div>
+        <img src="images/lowpower-trace.png" alt="Current consumption trace across a wake cycle">
+      </article>
+      ============================================================
+      -->
+    </section>
+
+    <section id="papers">
+      <h2>Publications</h2>
+      <ol class="papers">
+        <li>
+          <div>
+            <a href="https://doi.org/10.51316/jst.182.ssad.2025.35.2.4">High Accurate Smart Device
+            for Real-Time Monitoring Electric Motor Conditions Based on IoT Technology and
+            Artificial Intelligence</a>
+            <span class="venue">Truong, D. P., Nguyen, H. V., &amp; Dang, T. B. — JST: Smart Systems
+            and Devices, 35(2), 2025</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <a href="https://doi.org/10.1007/978-3-031-60154-5_38">Development of IoT-Based Device
+            for Nonintrusive Measurement of Rotational Speed of Induction Motors</a>
+            <span class="venue">Phuc, T. D., Vu, N. H., Duong, H. D. T., Bach, D. T., Son, B. C. —
+            EAI ICRESM 2023, Springer, 2024</span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <a href="https://doi.org/10.17973/MMSJ.2023_10_2023057">Development of Smart
+            Disinfection Machine Using IoT Technology</a>
+            <span class="venue">Truong, D. P., Tran, V. T., Le, T. C., Nguyen, H. V., Dang, T. B. —
+            MM Science Journal, 2023</span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="school">
+      <h2>Education</h2>
+      <dl class="kit">
+        <div>
+          <dt>2024 – 2026</dt>
+          <dd>
+            <strong>MSc, Smart Systems Integrated Solutions</strong> — Erasmus Mundus Joint
+            Master's Degree, fully funded. Aalto University (Finland), University of
+            South-Eastern Norway, and Budapest University of Technology and Economics (Hungary).
+            System-level design, IC design, VHDL-based hardware development, MEMS fabrication
+            and multiphysics modelling.
+          </dd>
+        </div>
+        <div>
+          <dt>2019 – 2023</dt>
+          <dd>
+            <strong>BSc, Mechatronics — honours programme</strong>, Hanoi University of Science
+            and Technology. Thesis on an IoT and machine-learning based motor monitoring device,
+            graded 9.5/10.
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="kit">
+      <h2>Skills</h2>
+      <dl class="kit">
+        <div>
+          <dt>Languages</dt>
+          <dd>C, C++ (modern, multi-threaded), VHDL, GLSL</dd>
+        </div>
+        <div>
+          <dt>Analysis</dt>
+          <dd>Python and Jupyter for measurement data, curve fitting, residual analysis</dd>
+        </div>
+        <div>
+          <dt>Embedded &amp; FPGA</dt>
+          <dd>Xilinx Zynq-7000, Vivado, Vitis, STM32, ESP32, Arduino</dd>
+        </div>
+        <div>
+          <dt>Imaging</dt>
+          <dd>Uncooled microbolometer LWIR, non-uniformity correction, drift compensation,
+          real-time DSP pipelines</dd>
+        </div>
+        <div>
+          <dt>Hardware</dt>
+          <dd>Altium Designer (schematic and layout), board bring-up and debugging, hand assembly,
+          SolidWorks, 3D printing</dd>
+        </div>
+        <div>
+          <dt>Simulation</dt>
+          <dd>ModelSim, Quartus, COMSOL, ANSYS Twin Builder, MATLAB</dd>
+        </div>
+        <div>
+          <dt>Interfaces</dt>
+          <dd>UART, SPI, I²C, Ethernet (UDP/RTP), MQTT</dd>
+        </div>
+        <div>
+          <dt>Spoken</dt>
+          <dd>Vietnamese (native), English (IELTS 7.0), Japanese (JLPT N3)</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="else">
+      <h2>Away from the bench</h2>
+      <p style="max-width:var(--measure);margin:0 0 26px">
+        I draw and take photographs on film, which is roughly the same problem as thermal
+        imaging with the maths taken out. I also swim, read, and build small robots when
+        nobody asks me to.
+      </p>
+      <div class="aside-photos">
+        <!-- Replace each placeholder div with:
+             <img src="images/drawing.jpg" alt="One of my drawings"> -->
+        <figure>
+          <div class="shot" style="aspect-ratio:3/2">images/drawing.jpg</div>
+          <figcaption>Drawing and painting</figcaption>
+        </figure>
+        <figure>
+          <div class="shot" style="aspect-ratio:3/2">images/film-photo.jpg</div>
+          <figcaption>Shooting film</figcaption>
+        </figure>
+        <figure>
+          <div class="shot" style="aspect-ratio:3/2">images/robot.jpg</div>
+          <figcaption>Building things</figcaption>
+        </figure>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="contact">
+    <span>Oslo, Norway · available to start immediately</span>
+    <span>
+      <a href="mailto:vu.mctes@gmail.com">vu.mctes@gmail.com</a> ·
+      <a href="https://github.com/nhvnhvvu">GitHub</a> ·
+      <a href="https://www.linkedin.com/in/Nhvuz">LinkedIn</a>
+    </span>
+  </footer>
+
+</div>
+
+</body>
+</html>
