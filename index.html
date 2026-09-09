@@ -13,6 +13,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  .hero p.lede,
+.plot figcaption,
+.track dd,
+.work p,
+.kit dd,
+#else > p {
+  text-align: justify;
+}
   :root{
     --ground:#F1F3F6;
     --panel:#FFFFFF;
@@ -253,7 +261,7 @@
     border-top:1px solid var(--rule-soft);
     padding:26px 0;
     display:grid;
-    grid-template-columns:minmax(0,1fr) 300px;
+    grid-template-columns:minmax(0,1fr) 500px;
     gap:34px;
     align-items:start;
   }
@@ -415,7 +423,7 @@
 <div class="wrap">
 
   <header class="masthead">
-    <a class="mark" href="#top">Vu Hoang Nguyen</a>
+    <a class="mark" href="#top">Portlofio</a>
     <nav>
       <a href="#work">Work</a>
       <a href="#papers">Papers</a>
@@ -439,7 +447,7 @@
           PCB design.
         </p>
         <ul class="links">
-          <li><a href="https://github.com/nhvnhvvu">GitHub</a></li>
+          <li><a href="https://github.com/vumctes-vn">GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/Nhvuz">LinkedIn</a></li>
           <li><a href="mailto:vu.mctes@gmail.com">vu.mctes@gmail.com</a></li>
           <!-- Drop your PDF in the repo root, then this link works -->
@@ -447,9 +455,9 @@
         </ul>
       </div>
       <div class="portrait">
-        <!-- Replace this whole div with:
-             <img src="images/portrait.jpg" alt="Vu Hoang Nguyen"> -->
-        <div class="placeholder">images/portrait.jpg<br>4:5 portrait</div>
+        
+             <img src="images/portrait.jpg" alt="Vu Hoang Nguyen">
+   
       </div>
     </div>
 
@@ -682,7 +690,7 @@
 
       <article class="work">
         <div>
-          <h3>IoT motor monitoring device</h3>
+          <h3>IoT and ML-based motor monitoring device</h3>
           <p class="where">3CsLab, HUST · 2023</p>
           <p>
             A device that clamps onto a motor housing, watches its parameters, and flags abnormal
@@ -693,17 +701,17 @@
           </p>
           <ul class="tags">
             <li>Altium Designer</li>
-            <li>PCB bring-up</li>
+            <li>PCB design</li>
             <li>ESP32</li>
             <li>SolidWorks</li>
-            <li>machine learning</li>
+  
           </ul>
           <p class="out">
-            <a href="https://github.com/nhvnhvvu">Repository</a>
-            <a href="https://doi.org/10.51316/jst.182.ssad.2025.35.2.4">Paper</a>
+             <a href="docs/motoreye.pdf">Project write-up (PDF)</a>
+            <a href="#papers">Three peer-reviewed papers</a>
           </p>
         </div>
-        <div class="shot">images/motor-board.jpg<br>assembled board — photograph it</div>
+        <img src="images/CoverMTE.jpg" alt="The completed smart gate">
       </article>
 
       <article class="work">
@@ -721,9 +729,13 @@
             <li>PHP / MySQL</li>
             <li>RFID</li>
           </ul>
-          <p class="out"><a href="https://github.com/nhvnhvvu">Repository</a></p>
+          
+          <p class="out">
+            <a href="docs/SMG.pdf">Project write-up (PDF)</a>
+            <a href="https://github.com/vumctes-vn/Smart-Gate-System.git">Repository</a>
+          </p>
         </div>
-        <div class="shot">images/gate-system.jpg<br>the built gate system</div>
+        <img src="images/CoverSMG.jpg" alt="The completed smart gate">
       </article>
 
       <!--
@@ -801,6 +813,42 @@
       </dl>
     </section>
 
+    <section id="prizes">
+      <h2>Awards</h2>
+      <dl class="track">
+        <div>
+          <dt>2024</dt>
+          <dd>Erasmus Mundus Joint Master's Degree scholarship, Smart Systems Integrated
+          Solutions — fully funded.</dd>
+        </div>
+        <div>
+          <dt>2023</dt>
+          <dd>Second prize, 40th HUST Scientific Research Conference, for the IoT and
+          machine-learning based motor monitoring device — among 33 other mechanics and
+          mechatronics entries.</dd>
+        </div>
+        <div>
+          <dt>2022</dt>
+          <dd>First prize, 39th HUST Scientific Research Conference, for the smart gate
+          system — among 34 other entries.</dd>
+        </div>
+        <div>
+          <dt>2022</dt>
+          <dd>Second prize, HUST Invention Exhibition Competition for Youth, for the smart
+          gate system.</dd>
+        </div>
+        <div>
+          <dt>2021</dt>
+          <dd>Finalist and 'Smartest product' prize at BK-ROV, the HUST remotely operated
+          underwater vehicle competition — one of ten teams in the final round.</dd>
+        </div>
+        <div>
+          <dt>2021</dt>
+          <dd>HUST scholarship for academic performance.</dd>
+        </div>
+      </dl>
+    </section>
+
     <section id="kit">
       <h2>Skills</h2>
       <dl class="kit">
@@ -844,23 +892,22 @@
     <section id="else">
       <h2>Away from the bench</h2>
       <p style="max-width:var(--measure);margin:0 0 26px">
-        I draw and take photographs on film, which is roughly the same problem as thermal
-        imaging with the maths taken out. I also swim, read, and build small robots when
-        nobody asks me to.
+  I paint and take photos, and I often walk around the city with my camera looking for small moments of everyday life. 
+  I also swim and read. And I build small robots, even when nobody asks me to.
       </p>
       <div class="aside-photos">
         <!-- Replace each placeholder div with:
              <img src="images/drawing.jpg" alt="One of my drawings"> -->
         <figure>
-          <div class="shot" style="aspect-ratio:3/2">images/drawing.jpg</div>
+          <img src="images/painting.jpg" alt="My painting">
           <figcaption>Drawing and painting</figcaption>
         </figure>
         <figure>
-          <div class="shot" style="aspect-ratio:3/2">images/film-photo.jpg</div>
+          <img src="images/sunset2.jpeg" alt="My photo">
           <figcaption>Shooting film</figcaption>
         </figure>
         <figure>
-          <div class="shot" style="aspect-ratio:3/2">images/robot.jpg</div>
+          <img src="images/Robot.jpg" alt="My robot">
           <figcaption>Building things</figcaption>
         </figure>
       </div>
@@ -872,7 +919,7 @@
     <span>Oslo, Norway · available to start immediately</span>
     <span>
       <a href="mailto:vu.mctes@gmail.com">vu.mctes@gmail.com</a> ·
-      <a href="https://github.com/nhvnhvvu">GitHub</a> ·
+      <a href="https://github.com/vumctes-vn">GitHub</a> ·
       <a href="https://www.linkedin.com/in/Nhvuz">LinkedIn</a>
     </span>
   </footer>
