@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vu Hoang Nguyen — Embedded &amp; Imaging Systems Engineer</title>
+<title>Vu Hoang Nguyen - Embedded &amp; Imaging Systems Engineer</title>
 <meta name="description" content="Embedded engineer working on thermal imaging systems: sensor characterisation, calibration, firmware and real-time software. Based in Oslo.">
 <meta name="author" content="Vu Hoang Nguyen">
-<meta property="og:title" content="Vu Hoang Nguyen — Embedded &amp; Imaging Systems Engineer">
+<meta property="og:title" content="Vu Hoang Nguyen - Embedded &amp; Imaging Systems Engineer">
 <meta property="og:description" content="Thermal imaging systems: sensor characterisation, calibration, firmware, real-time software. Oslo, Norway.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -438,7 +438,7 @@
     <div class="hero">
       <div>
         <h1>Vu Hoang Nguyen</h1>
-        <p class="role">Embedded &amp; imaging systems engineer — Oslo, Norway</p>
+        <p class="role">Embedded &amp; imaging systems engineer - Oslo, Norway</p>
         <p class="lede">
           I work on thermal imaging systems from the detector outwards: characterising how an
           uncooled microbolometer behaves, correcting for it in firmware, and building the
@@ -550,7 +550,7 @@
         <div>
           <dt>2026.06</dt>
           <dd>Submitted the thesis, written at <strong>Integrated Detector Electronics
-          (IDEAS)</strong> in Oslo — <em>Embedded Calibration Storage and Drift Correction for an
+          (IDEAS)</strong> in Oslo - <em>Embedded Calibration Storage and Drift Correction for an
           Uncooled Microbolometer Thermal Imaging System</em>.</dd>
         </div>
         <div>
@@ -560,12 +560,12 @@
         </div>
         <div>
           <dt>2025.09</dt>
-          <dd>Third semester at <strong>Budapest University of Technology and Economics</strong> —
+          <dd>Third semester at <strong>Budapest University of Technology and Economics</strong> -
           IC and MEMS design, VHDL and simulation, system-level modelling.</dd>
         </div>
         <div>
           <dt>2025.06</dt>
-          <dd>Summer internship at IDEAS — built the real-time Qt/C++ application and GPU
+          <dd>Summer internship at IDEAS - built the real-time Qt/C++ application and GPU
           processing pipeline for a 640×480 LWIR thermal camera.</dd>
         </div>
         <div>
@@ -581,7 +581,7 @@
         <div>
           <dt>2024.09</dt>
           <dd>Started the <strong>Erasmus Mundus</strong> master's in Smart Systems Integrated
-          Solutions on a full scholarship — first semester at <strong>Aalto University</strong>,
+          Solutions on a full scholarship - first semester at <strong>Aalto University</strong>,
           Helsinki.</dd>
         </div>
         <div>
@@ -609,84 +609,76 @@
     <section id="work">
       <h2>Selected work</h2>
 
-      <article class="work">
-        <div>
-          <h3>Drift correction for an uncooled microbolometer</h3>
-          <p class="where">Master's thesis · IDEAS, Oslo · 2026</p>
-          <p>
-            An uncooled microbolometer drifts because its own readout circuit heats it, and this
-            camera had no temperature sensor on the focal plane — so the drift could not be
-            modelled against temperature the way the literature does. I characterised it against
-            warm-up time instead, derived a per-row exponential model from a cold-start recording,
-            and developed two ways to locate a new recording on that drift curve without a
-            temperature reading, then showed algebraically that the two are equivalent. An adequate
-            model turned out to be obtainable from the camera alone with a capped lens — no
-            blackbody, no thermal chamber.
-          </p>
-          <ul class="tags">
-            <li>Python / Jupyter</li>
-            <li>non-linear least squares</li>
-            <li>sensor characterisation</li>
-            <li>Lynred ATTO640D-02</li>
-          </ul>
-          <p class="out">
-            <!-- If USN publishes the thesis openly, link it here. Do NOT self-host if embargoed. -->
-            <span class="closed">Thesis — link pending open publication</span>
-          </p>
-        </div>
-        <div class="shot">images/drift-fit.png<br>drift curves before / after correction</div>
-      </article>
+<article class="work">
+  <div>
+    <h3>Embedded calibration storage and drift correction for an uncooled
+    microbolometer</h3>
+    <p class="where">IDEAS, Oslo · 2026</p>
+    <p>
+      An uncooled microbolometer drifts because its own readout circuit heats
+      it, and this camera had no temperature sensor on the focal plane - so
+      the drift could not be modelled against temperature the way the
+      literature does. I characterised it against warm-up time instead,
+      derived a per-row exponential model from a cold-start recording, and
+      developed two ways to locate a new recording on that drift curve without
+      a temperature reading, then showed algebraically that the two are
+      equivalent. An adequate model turned out to be obtainable from the
+      camera alone with a capped lens - no blackbody, no thermal chamber.
+    </p>
+    <p>
+      A second route moved calibration into the camera itself. I enabled the
+      SD1 controller for the on-module eMMC - reconstructing the Vivado
+      project from a TCL script since the original was gone - extended the BSP
+      with xilffs for a FAT filesystem, wrote an FTP service to move
+      calibration files onto the device, and built a temperature-indexed
+      lookup table that selects and applies a per-pixel calibration on board.
+      Double-buffered so a new file loads while the frame pipeline keeps
+      reading, with an identity-calibration fallback so the image never drops
+      out.
+    </p>
+    <ul class="tags">
+      <li>Embedded C</li>
+      <li>Zynq-7000 / TE0720</li>
+      <li>Vivado &amp; Vitis</li>
+      <li>FatFS</li>
+      <li>Python / Jupyter</li>
+      <li>curve fitting</li>
+    </ul>
+    <p class="out"><span class="closed">Company platform - code not public</span></p>
+  </div>
+  <img src="images/drift-fit.png" alt="Per-row drift curves before and after correction">
+</article>
 
       <article class="work">
-        <div>
-          <h3>On-camera calibration storage</h3>
-          <p class="where">Master's thesis · IDEAS, Oslo · 2026</p>
-          <p>
-            A second calibration route on the same platform: move the correction off the host and
-            into the camera. I enabled the SD1 controller for the on-module eMMC — reconstructing
-            the Vivado project from a TCL script since the original was gone — extended the BSP with
-            xilffs for a FAT filesystem, wrote an FTP service to move calibration files onto the
-            device, and built a temperature-indexed lookup table that selects and applies a
-            per-pixel calibration inside the camera. Double-buffered so a new file loads while the
-            frame pipeline keeps reading, with an identity-calibration fallback so the image never
-            drops out.
-          </p>
-          <ul class="tags">
-            <li>Embedded C</li>
-            <li>Zynq-7000 / TE0720</li>
-            <li>Vivado &amp; Vitis</li>
-            <li>FatFS</li>
-            <li>FTP</li>
-          </ul>
-          <p class="out"><span class="closed">Company platform — code not public</span></p>
-        </div>
-        <div class="shot">images/tcn3-camera.jpg<br>the TCN3 camera on the bench</div>
-      </article>
+  <div>
+    <h3>Control software for a thermal imaging system</h3>
+    <p class="where">IDEAS, Oslo · 2025–2026</p>
+    <p>
+      Built the desktop application that drives a 640×480 LWIR thermal camera
+      and turns raw detector output into a usable image. 16-bit video arrives
+      over RTP/UDP through a patched FFmpeg backend; non-uniformity correction
+      and Ironbow colorization run as GLSL shaders inside Qt's scene graph.
+      Independent threads handle live display, statistics and recording, so a
+      slow consumer never stalls the incoming stream. Getting the per-frame
+      processing fast enough took a detour - a Boost-based histogram made it
+      worse, at 6 FPS - before SSE4.1 vectorisation, a structure-of-arrays
+      layout for the calibration data and removing allocation from the hot
+      loop brought it from roughly 12 to a stable 45 FPS.
+    </p>
+    <ul class="tags">
+      <li>C++ / Qt</li>
+      <li>GLSL</li>
+      <li>SSE4.1 SIMD</li>
+      <li>FFmpeg</li>
+      <li>multithreading</li>
+      <li>RTP / UDP</li>
+    </ul>
+    <p class="out"><span class="closed">Company software - code not public</span></p>
+  </div>
+  <img src="images/viewer-ui.png" alt="The thermal camera application showing a live corrected image">
+</article>
 
-      <article class="work">
-        <div>
-          <h3>Real-time LWIR thermal camera application</h3>
-          <p class="where">IDEAS, Oslo · 2025–2026</p>
-          <p>
-            Rebuilt a basic frame viewer into a tool that can record, replay, measure and calibrate
-            in one interface. 16-bit video arrives over RTP/UDP through a patched FFmpeg backend;
-            non-uniformity correction and Ironbow colorization run as GLSL shaders inside Qt's scene
-            graph. Getting the per-frame processing fast enough took a detour — a Boost-based
-            histogram made it worse, at 6 FPS — before SSE4.1 vectorisation, a structure-of-arrays
-            layout for the calibration data, and removing allocation from the hot loop brought it
-            from roughly 12 to a stable 45 FPS.
-          </p>
-          <ul class="tags">
-            <li>C++ / Qt</li>
-            <li>GLSL</li>
-            <li>SSE4.1 SIMD</li>
-            <li>FFmpeg</li>
-            <li>multithreading</li>
-          </ul>
-          <p class="out"><span class="closed">Company software — code not public</span></p>
-        </div>
-        <div class="shot">images/viewer-ui.png<br>application screenshot</div>
-      </article>
+
 
       <article class="work">
         <div>
@@ -695,8 +687,8 @@
           <p>
             A device that clamps onto a motor housing, watches its parameters, and flags abnormal
             behaviour through a classification model, alerting a phone app. I led a team of five and
-            did the schematic and PCB layout in Altium, then took the board through four revisions —
-            hand-soldered and bench-tested each one — with a 3D-printed enclosure designed in
+            did the schematic and PCB layout in Altium, then took the board through four revisions -
+            hand-soldered and bench-tested each one - with a 3D-printed enclosure designed in
             SolidWorks. Detection accuracy came out above 95%.
           </p>
           <ul class="tags">
@@ -741,7 +733,7 @@
       <!--
       ============================================================
       ADD THE LOW-POWER PROJECT HERE ONCE IT EXISTS.
-      Do not publish this block empty — an entry with no link
+      Do not publish this block empty - an entry with no link
       is worse than no entry. Suggested shape:
 
       <article class="work">
@@ -766,7 +758,7 @@
             <a href="https://doi.org/10.51316/jst.182.ssad.2025.35.2.4">High Accurate Smart Device
             for Real-Time Monitoring Electric Motor Conditions Based on IoT Technology and
             Artificial Intelligence</a>
-            <span class="venue">Truong, D. P., Nguyen, H. V., &amp; Dang, T. B. — JST: Smart Systems
+            <span class="venue">Truong, D. P., Nguyen, H. V., &amp; Dang, T. B. - JST: Smart Systems
             and Devices, 35(2), 2025</span>
           </div>
         </li>
@@ -774,7 +766,7 @@
           <div>
             <a href="https://doi.org/10.1007/978-3-031-60154-5_38">Development of IoT-Based Device
             for Nonintrusive Measurement of Rotational Speed of Induction Motors</a>
-            <span class="venue">Phuc, T. D., Vu, N. H., Duong, H. D. T., Bach, D. T., Son, B. C. —
+            <span class="venue">Phuc, T. D., Vu, N. H., Duong, H. D. T., Bach, D. T., Son, B. C. -
             EAI ICRESM 2023, Springer, 2024</span>
           </div>
         </li>
@@ -782,7 +774,7 @@
           <div>
             <a href="https://doi.org/10.17973/MMSJ.2023_10_2023057">Development of Smart
             Disinfection Machine Using IoT Technology</a>
-            <span class="venue">Truong, D. P., Tran, V. T., Le, T. C., Nguyen, H. V., Dang, T. B. —
+            <span class="venue">Truong, D. P., Tran, V. T., Le, T. C., Nguyen, H. V., Dang, T. B. -
             MM Science Journal, 2023</span>
           </div>
         </li>
@@ -795,7 +787,7 @@
         <div>
           <dt>2024 – 2026</dt>
           <dd>
-            <strong>MSc, Smart Systems Integrated Solutions</strong> — Erasmus Mundus Joint
+            <strong>MSc, Smart Systems Integrated Solutions</strong> - Erasmus Mundus Joint
             Master's Degree, fully funded. Aalto University (Finland), University of
             South-Eastern Norway, and Budapest University of Technology and Economics (Hungary).
             System-level design, IC design, VHDL-based hardware development, MEMS fabrication
@@ -805,7 +797,7 @@
         <div>
           <dt>2019 – 2023</dt>
           <dd>
-            <strong>BSc, Mechatronics — honours programme</strong>, Hanoi University of Science
+            <strong>BSc, Mechatronics - honours programme</strong>, Hanoi University of Science
             and Technology. Thesis on an IoT and machine-learning based motor monitoring device,
             graded 9.5/10.
           </dd>
@@ -819,18 +811,18 @@
         <div>
           <dt>2024</dt>
           <dd>Erasmus Mundus Joint Master's Degree scholarship, Smart Systems Integrated
-          Solutions — fully funded.</dd>
+          Solutions - fully funded.</dd>
         </div>
         <div>
           <dt>2023</dt>
           <dd>Second prize, 40th HUST Scientific Research Conference, for the IoT and
-          machine-learning based motor monitoring device — among 33 other mechanics and
+          machine-learning based motor monitoring device - among 33 other mechanics and
           mechatronics entries.</dd>
         </div>
         <div>
           <dt>2022</dt>
           <dd>First prize, 39th HUST Scientific Research Conference, for the smart gate
-          system — among 34 other entries.</dd>
+          system - among 34 other entries.</dd>
         </div>
         <div>
           <dt>2022</dt>
@@ -840,7 +832,7 @@
         <div>
           <dt>2021</dt>
           <dd>Finalist and 'Smartest product' prize at BK-ROV, the HUST remotely operated
-          underwater vehicle competition — one of ten teams in the final round.</dd>
+          underwater vehicle competition - one of ten teams in the final round.</dd>
         </div>
         <div>
           <dt>2021</dt>
@@ -904,7 +896,7 @@
         </figure>
         <figure>
           <img src="images/sunset2.jpeg" alt="My photo">
-          <figcaption>Shooting film</figcaption>
+          <figcaption>Photography</figcaption>
         </figure>
         <figure>
           <img src="images/Robot.jpg" alt="My robot">
