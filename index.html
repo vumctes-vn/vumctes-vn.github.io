@@ -283,6 +283,21 @@
 
   .work p{margin:0 0 14px;max-width:var(--measure)}
 
+  .work ul.detail{
+    margin:0 0 14px;
+    padding:0 0 0 18px;
+    max-width:var(--measure);
+    text-align:justify;
+  }
+
+  .work ul.detail li{
+    margin-bottom:8px;
+  }
+
+  .work ul.detail li::marker{
+    color:var(--ink-muted);
+  }
+
   .tags{
     display:flex;
     flex-wrap:wrap;
@@ -423,7 +438,7 @@
 <div class="wrap">
 
   <header class="masthead">
-    <a class="mark" href="#top">Portlofio</a>
+    <a class="mark" href="#top">Portfolio</a>
     <nav>
       <a href="#work">Work</a>
       <a href="#papers">Papers</a>
@@ -613,67 +628,78 @@
   <div>
     <h3>Embedded calibration storage and drift correction for an uncooled
     microbolometer</h3>
-    <p class="where">IDEAS, Oslo · 2026</p>
+    <p class="where">IDEAS, Oslo &middot; 2026</p>
     <p>
-      An uncooled microbolometer drifts because its own readout circuit heats
-      it, and this camera had no temperature sensor on the focal plane - so
-      the drift could not be modelled against temperature the way the
-      literature does. I characterised it against warm-up time instead,
-      derived a per-row exponential model from a cold-start recording, and
-      developed two ways to locate a new recording on that drift curve without
-      a temperature reading, then showed algebraically that the two are
-      equivalent. An adequate model turned out to be obtainable from the
-      camera alone with a capped lens - no blackbody, no thermal chamber.
+      Uncooled microbolometer arrays suffer from self-heating, which makes
+      their output drift. I addressed this on the same camera through two
+      separate methods.
     </p>
-    <p>
-      A second route moved calibration into the camera itself. I enabled the
-      SD1 controller for the on-module eMMC - reconstructing the Vivado
-      project from a TCL script since the original was gone - extended the BSP
-      with xilffs for a FAT filesystem, wrote an FTP service to move
-      calibration files onto the device, and built a temperature-indexed
-      lookup table that selects and applies a per-pixel calibration on board.
-      Double-buffered so a new file loads while the frame pipeline keeps
-      reading, with an identity-calibration fallback so the image never drops
-      out.
-    </p>
+    <ul class="detail">
+      <li>
+        <strong>Drift correction.</strong> With no temperature sensor on the
+        focal plane, I modelled the drift per row as an exponential in warm-up
+        time, with two provably equivalent ways to place a new recording on
+        the curve.
+      </li>
+      <li>
+        <strong>Calibration storage, in firmware.</strong> On the Zynq-7000 I
+        brought up the on-module eMMC, wrote an FTP service, and built a
+        temperature-indexed lookup table that selects and applies a per-pixel
+        calibration inside the camera, independent of the host.
+      </li>
+    </ul>
     <ul class="tags">
       <li>Embedded C</li>
-      <li>Zynq-7000 / TE0720</li>
+      <li>Zynq-7000</li>
       <li>Vivado &amp; Vitis</li>
-      <li>FatFS</li>
-      <li>Python / Jupyter</li>
-      <li>curve fitting</li>
+      <li>FreeRTOS / LwIP</li>
+      <li>Jupyter</li>
     </ul>
-    <p class="out"><span class="closed">Company platform - code not public</span></p>
+    <p class="out">
+      <a href="docs/TC_calib.pdf">Slides (PDF)</a>
+      <span class="closed">Shared with permission from IDEAS &middot; code not public</span>
+    </p>
   </div>
   <img src="images/drift-fit.png" alt="Per-row drift curves before and after correction">
 </article>
 
       <article class="work">
   <div>
-    <h3>Control software for a thermal imaging system</h3>
-    <p class="where">IDEAS, Oslo · 2025–2026</p>
+    <h3>Real-time control software for a thermal imaging system</h3>
+    <p class="where">IDEAS, Oslo &middot; 2025&ndash;2026</p>
     <p>
-      Built the desktop application that drives a 640×480 LWIR thermal camera
-      and turns raw detector output into a usable image. 16-bit video arrives
-      over RTP/UDP through a patched FFmpeg backend; non-uniformity correction
-      and Ironbow colorization run as GLSL shaders inside Qt's scene graph.
-      Independent threads handle live display, statistics and recording, so a
-      slow consumer never stalls the incoming stream. Getting the per-frame
-      processing fast enough took a detour - a Boost-based histogram made it
-      worse, at 6 FPS - before SSE4.1 vectorisation, a structure-of-arrays
-      layout for the calibration data and removing allocation from the hot
-      loop brought it from roughly 12 to a stable 45 FPS.
+      Developed a Qt desktop application for a 640&times;480 LWIR thermal
+      camera, streaming 16-bit video over RTP/UDP into a GLSL display shader.
+      Built the tooling an operator needs to actually use the image:
+      auto-range contrast, custom charts, per-frame statistics, pixel
+      profiling, and playback through the live pipeline.
     </p>
+    <p>
+      Once the application was functional I turned to throughput, which then
+      topped out at 12 FPS.
+    </p>
+    <ul class="detail">
+      <li>
+        First attempt: the Boost libraries for data processing and QtGraph for
+        GPU-accelerated chart rendering. The result went the wrong way &mdash;
+        throughput fell to 6 FPS and the charts and histogram became unstable.
+      </li>
+      <li>
+        Second attempt: SIMD, using SSE4.1 intrinsics on the per-frame
+        processing. The application then sustained 45 FPS in loopback testing.
+      </li>
+    </ul>
     <ul class="tags">
-      <li>C++ / Qt</li>
+      <li>C++ / Qt 6</li>
       <li>GLSL</li>
       <li>SSE4.1 SIMD</li>
       <li>FFmpeg</li>
-      <li>multithreading</li>
       <li>RTP / UDP</li>
     </ul>
-    <p class="out"><span class="closed">Company software - code not public</span></p>
+    <p class="out">
+      <a href="docs/TC_Software.pdf">Project write-up (PDF)</a>
+      <span class="closed">Shared with permission from IDEAS &middot; code not public</span>
+    </p>
   </div>
   <img src="images/viewer-ui.png" alt="The thermal camera application showing a live corrected image">
 </article>
